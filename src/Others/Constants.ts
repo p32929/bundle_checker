@@ -19,10 +19,6 @@ export class Constants {
                     unit: "SMS",
                     amount: 120,
                 },
-                {
-                    unit: "Tk",
-                    amount: 101,
-                },
             ]
         }
     ]
