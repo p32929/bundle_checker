@@ -4,8 +4,8 @@ export interface IBundleData {
 }
 
 export interface IBundle {
-    name: string
-    startDate: Date | null
-    validity: number
+    bundle_name: string
+    start_date: Date | null
+    bundle_validity: number
     data: Array<IBundleData>
 }
