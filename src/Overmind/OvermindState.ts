@@ -8,5 +8,5 @@ export interface State {
 
 export const state: State = {
     isShowingBundleAddDialog: false,
-    bundles: Constants.dummyBundles,
+    bundles: []
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-import {makeStyles} from '@material-ui/core/styles';
-import {AppBar, Button, Divider, Grid, Theme, Toolbar, Typography} from "@material-ui/core";
-import {useActions, useAppState} from '../Overmind/OvermindHelper';
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Button, Divider, Grid, Theme, Toolbar, Typography } from "@material-ui/core";
+import { useActions, useAppState } from '../Overmind/OvermindHelper';
 
 interface Props {
 
@@ -20,7 +20,11 @@ const TopBar: React.FC<Props> = (props) => {
     const classes = useStyles();
 
     const onAddBtnClicked = () => {
-        
+        actions.showBundleAdderDialog(true)
+    }
+
+    const onSaveBtnClicked = () => {
+        localStorage.setItem("BUNDLES", JSON.stringify(states.bundles))
     }
 
     return <AppBar>
@@ -30,9 +34,14 @@ const TopBar: React.FC<Props> = (props) => {
                     Bundle Checker
                 </Typography>
 
-                <Button color='inherit' onClick={onAddBtnClicked}>
-                    ADD
-                </Button>
+                <Grid item>
+                    <Button color='inherit' onClick={onSaveBtnClicked}>
+                        SAVE
+                    </Button>
+                    <Button color='inherit' onClick={onAddBtnClicked}>
+                        ADD
+                    </Button>
+                </Grid>
             </Grid>
         </Toolbar>
     </AppBar>

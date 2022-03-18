@@ -9,3 +9,8 @@ export const showBundleAdderDialog = ({ state }: Context, value: boolean) => {
 export const addBundle = ({ state }: Context, value: IBundle) => {
     state.bundles.push(value)
 }
+
+export const setBundle = ({ state }: Context, value: Array<IBundle>) => {
+    state.bundles = value
+}
+
