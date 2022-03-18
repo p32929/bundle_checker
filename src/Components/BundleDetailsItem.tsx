@@ -53,7 +53,7 @@ const BundleDetailsItem: React.FC<Props> = (props) => {
         var dateStrArr = []
         for (let i = 0; i < props.item.bundle_validity_days; i++) {
             const { dd, mm, yyyy } = convertDateTo_ddmmyyyy(addDaysToDate(startDate, 1))
-            const date_str = `${dd}/${mm}/${yyyy}`
+            const date_str = `${dd}/${mm}/${yyyy} ( ${startDate.toLocaleString('en-us', { weekday: 'long' })} )`
             dateStrArr.push(`${date_str}`)
         }
         return dateStrArr
@@ -66,32 +66,34 @@ const BundleDetailsItem: React.FC<Props> = (props) => {
         <Table >
             <TableHead>
                 <TableRow>
-                    <TableCell>Date</TableCell>
+                    <TableCell align="center">Date</TableCell>
 
                     {
                         props.item.data.map((item, index) => {
-                            return <TableCell align="right">{item.unit}</TableCell>
+                            return <TableCell align="center">{item.unit}</TableCell>
                         })
                     }
                 </TableRow>
             </TableHead>
-        </Table>
 
-        <TableBody>
-            {
-                getStartToEndDates().map((item, index) => {
-                    return <TableRow>
-                        <TableCell align="left">
-                            {item}
-                        </TableCell>
-                        <TableCell align="right">TEST</TableCell>
-                        <TableCell align="right">TEST</TableCell>
-                        <TableCell align="right">TEST</TableCell>
-                        <TableCell align="right">TEST</TableCell>
-                    </TableRow>
-                })
-            }
-        </TableBody>
+            <TableBody>
+                {
+                    getStartToEndDates().map((item, index) => {
+                        return <TableRow key={index}>
+                            <TableCell align="center">{item}</TableCell>
+                            {
+                                props.item.data.map((item, index2) => {
+                                    return <TableCell align="center">
+                                        {(item.amount - (item.amount / props.item.bundle_validity_days) * (index + 1)).toFixed(2)} ( {item.unit} )
+                                    </TableCell>
+                                })
+                            }
+                        </TableRow>
+                    })
+                }
+            </TableBody>
+
+        </Table>
 
     </Grid>
 
