@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, TextField, Theme, Typography } from "@material-ui/core";
-import { useActions, useAppState } from '../../Overmind/OvermindHelper';
+import { useActions, useAppState } from '../Overmind/OvermindHelper';
 import { FieldArray, Form, Formik } from 'formik';
 import { act } from 'react-dom/test-utils';
-import { IBundle } from '../../Others/Models';
+import { IBundle } from '../Others/Models';
 
 interface Props {
 
@@ -24,11 +24,11 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
     const textfieldStyle = { paddingTop: 16 }
     const initialBundle: IBundle = {
         bundle_name: "",
-        bundle_validity: 0,
+        bundle_validity_days: 0,
         start_date: '',
         data: [
             {
-                name: "",
+                unit: "",
                 amount: 0
             }
         ]
@@ -67,10 +67,10 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                                             values.data.map((val, index) => {
                                                 return <Grid container spacing={1} alignItems='center'>
                                                     <Grid item xs={5}>
-                                                        <TextField type="number" helperText="Example: 1024" onChange={handleChange} style={textfieldStyle} placeholder="Amount" fullWidth name={`data.${index}.name`} />
+                                                        <TextField type="number" helperText="Example: 1024" onChange={handleChange} style={textfieldStyle} placeholder="Amount" fullWidth name={`data.${index}.amount`} />
                                                     </Grid>
                                                     <Grid item xs={5}>
-                                                        <TextField type="text" helperText="Example: Mega Bytes" onChange={handleChange} style={textfieldStyle} placeholder="Unit of measurement" fullWidth name={`data.${index}.amount`} />
+                                                        <TextField type="text" helperText="Example: Mega Bytes" onChange={handleChange} style={textfieldStyle} placeholder="Unit of measurement" fullWidth name={`data.${index}.unit`} />
                                                     </Grid>
                                                     <Grid item xs={2}>
                                                         <Button fullWidth color='primary' onClick={() => {

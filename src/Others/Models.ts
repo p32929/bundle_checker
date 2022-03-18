@@ -1,11 +1,11 @@
 export interface IBundleData {
-    name: string
-    amount: 0
+    unit: string
+    amount: number
 }
 
 export interface IBundle {
     bundle_name: string
     start_date: string
-    bundle_validity: number
+    bundle_validity_days: number
     data: Array<IBundleData>
 }

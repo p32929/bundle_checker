@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Theme } from "@material-ui/core";
 import { useActions, useAppState } from './Overmind/OvermindHelper';
 import TopBar from './Components/TopBar';
-import BundleAdderDialog from './Components/Dialogs/BundleAdderDialog';
+import BundleAdderDialog from './Components/BundleAdderDialog';
+import BundleDetailsItem from './Components/BundleDetailsItem';
+import AppBarOffset from './Components/AppBarOffset';
 
 interface Props {
 
@@ -24,6 +26,12 @@ const App: React.FC<Props> = (props) => {
     return <Grid container direction='column' justifyContent='center' alignItems='center'>
         <BundleAdderDialog />
         <TopBar />
+        <AppBarOffset />
+        {
+            states.bundles.map((item, index) => {
+                return <BundleDetailsItem item={item} />
+            })
+        }
     </Grid>
 
 }

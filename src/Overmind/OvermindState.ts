@@ -1,3 +1,4 @@
+import { Constants } from "../Others/Constants"
 import { IBundle } from "../Others/Models"
 
 export interface State {
@@ -6,6 +7,6 @@ export interface State {
 }
 
 export const state: State = {
-    isShowingBundleAddDialog: true,
-    bundles: []
+    isShowingBundleAddDialog: false,
+    bundles: Constants.dummyBundles,
 }
