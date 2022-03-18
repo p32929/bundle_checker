@@ -5,7 +5,7 @@ export interface IBundleData {
 
 export interface IBundle {
     bundle_name: string
-    start_date: Date | null
+    start_date: string
     bundle_validity: number
     data: Array<IBundleData>
 }

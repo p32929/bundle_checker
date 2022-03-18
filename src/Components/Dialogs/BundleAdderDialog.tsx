@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, TextField, Theme, Typography } from "@material-ui/core";
 import { useActions, useAppState } from '../../Overmind/OvermindHelper';
 import { FieldArray, Form, Formik } from 'formik';
+import { act } from 'react-dom/test-utils';
+import { IBundle } from '../../Others/Models';
 
 interface Props {
 
@@ -20,19 +22,22 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
     const classes = useStyles();
 
     const textfieldStyle = { paddingTop: 16 }
-    const dummyData = {
-        name: "",
-        amount: 0,
+    const initialBundle: IBundle = {
+        bundle_name: "",
+        bundle_validity: 0,
+        start_date: '',
+        data: [
+            {
+                name: "",
+                amount: 0
+            }
+        ]
     }
 
     return <Formik
-        initialValues={{
-            bundle_name: '', start_date: '', bundle_validity: 0, data: [
-                dummyData
-            ]
-        }}
+        initialValues={initialBundle}
         onSubmit={(values, { setSubmitting }) => {
-            console.log(values)
+            actions.addBundle(values)
         }}
     >
         {({ values, submitForm, handleChange }) => (
@@ -46,9 +51,9 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                     </DialogTitle>
                     <DialogContent>
                         <Grid container direction='column'>
-                            <TextField onChange={handleChange} style={textfieldStyle} name="bundle_name" placeholder="Bundle name" />
-                            <TextField onChange={handleChange} style={textfieldStyle} name="start_date" placeholder="Start date" />
-                            <TextField onChange={handleChange} style={textfieldStyle} name="bundle_validity" placeholder="Bundle validity (days)" />
+                            <TextField type="text" onChange={handleChange} style={textfieldStyle} name="bundle_name" placeholder="Bundle name" />
+                            <TextField type="text" onChange={handleChange} style={textfieldStyle} name="start_date" placeholder="Start date" />
+                            <TextField type="number" onChange={handleChange} style={textfieldStyle} name="bundle_validity" placeholder="Bundle validity (days)" />
 
                             <FieldArray name="data">
                                 {({ remove, push }) => {
@@ -61,10 +66,10 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                                             values.data.map((val, index) => {
                                                 return <Grid container spacing={1} alignItems='center'>
                                                     <Grid item xs={5}>
-                                                        <TextField onChange={handleChange} style={textfieldStyle} placeholder="Amount" fullWidth name={`data.${index}.name`} />
+                                                        <TextField type="number" onChange={handleChange} style={textfieldStyle} placeholder="Amount" fullWidth name={`data.${index}.name`} />
                                                     </Grid>
                                                     <Grid item xs={5}>
-                                                        <TextField onChange={handleChange} style={textfieldStyle} placeholder="Unit of measurement" fullWidth name={`data.${index}.amount`} />
+                                                        <TextField type="text" onChange={handleChange} style={textfieldStyle} placeholder="Unit of measurement" fullWidth name={`data.${index}.amount`} />
                                                     </Grid>
                                                     <Grid item xs={2}>
                                                         <Button fullWidth color='primary' onClick={() => {
@@ -76,7 +81,7 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                                         }
 
                                         <Button style={{ marginTop: 16 }} color='primary' variant='contained' fullWidth onClick={() => {
-                                            push(dummyData)
+                                            push(initialBundle.data)
                                         }}>Add item</Button>
 
                                     </Grid>
