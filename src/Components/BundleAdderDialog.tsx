@@ -52,9 +52,9 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                     </DialogTitle>
                     <DialogContent>
                         <Grid container direction='column'>
-                            <TextField type="text" onChange={handleChange} style={textfieldStyle} helperText="Example: Amazing bundle" name="bundle_name" placeholder="Bundle name" />
-                            <TextField type="text" onChange={handleChange} style={textfieldStyle} helperText="Example: 18/03/2022" name="start_date" placeholder="Start date" />
-                            <TextField type="number" onChange={handleChange} style={textfieldStyle} helperText="Example: 30" name="bundle_validity_days" placeholder="Bundle validity (days)" />
+                            <TextField type="text" onChange={handleChange} style={textfieldStyle} helperText="ex: Amazing bundle" name="bundle_name" placeholder="Bundle name" />
+                            <TextField type="text" onChange={handleChange} style={textfieldStyle} helperText="ex: 18/03/2022" name="start_date" placeholder="Start date" />
+                            <TextField type="number" onChange={handleChange} style={textfieldStyle} helperText="ex: 30" name="bundle_validity_days" placeholder="Bundle validity (days)" />
 
                             <FieldArray name="data">
                                 {({ remove, push }) => {
@@ -65,14 +65,14 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
 
                                         {
                                             values.data.map((val, index) => {
-                                                return <Grid container spacing={1} alignItems='center'>
-                                                    <Grid item xs={5}>
-                                                        <TextField type="number" helperText="Example: 1024" onChange={handleChange} style={textfieldStyle} placeholder="Amount" fullWidth name={`data.${index}.amount`} />
+                                                return <Grid container spacing={1} alignItems='center' alignContent='center'>
+                                                    <Grid item xs={4}>
+                                                        <TextField type="number" helperText="ex: 1024" onChange={handleChange} style={textfieldStyle} placeholder="Amount" fullWidth name={`data.${index}.amount`} />
                                                     </Grid>
                                                     <Grid item xs={5}>
-                                                        <TextField type="text" helperText="Example: Mega Bytes" onChange={handleChange} style={textfieldStyle} placeholder="Unit of measurement" fullWidth name={`data.${index}.unit`} />
+                                                        <TextField type="text" helperText="ex: MB" onChange={handleChange} style={textfieldStyle} placeholder="Unit of measurement" fullWidth name={`data.${index}.unit`} />
                                                     </Grid>
-                                                    <Grid item xs={2}>
+                                                    <Grid item xs={3}>
                                                         <Button fullWidth color='primary' onClick={() => {
                                                             remove(index)
                                                         }}>Delete</Button>
