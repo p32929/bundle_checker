@@ -91,7 +91,7 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                         </Grid>
                     </DialogContent>
                     <DialogActions>
-                        <Button color="primary">
+                        <Button color="primary" onClick={() => { actions.showBundleAdderDialog(false) }}>
                             Cancel
                         </Button>
                         <Button color="primary" autoFocus onClick={async () => { await submitForm() }}>
