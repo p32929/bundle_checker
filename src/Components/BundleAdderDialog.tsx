@@ -54,7 +54,7 @@ const BundleAdderDialog: React.FC<Props> = (props) => {
                         <Grid container direction='column'>
                             <TextField type="text" onChange={handleChange} style={textfieldStyle} helperText="Example: Amazing bundle" name="bundle_name" placeholder="Bundle name" />
                             <TextField type="text" onChange={handleChange} style={textfieldStyle} helperText="Example: 18/03/2022" name="start_date" placeholder="Start date" />
-                            <TextField type="number" onChange={handleChange} style={textfieldStyle} helperText="Example: 30" name="bundle_validity" placeholder="Bundle validity (days)" />
+                            <TextField type="number" onChange={handleChange} style={textfieldStyle} helperText="Example: 30" name="bundle_validity_days" placeholder="Bundle validity (days)" />
 
                             <FieldArray name="data">
                                 {({ remove, push }) => {
