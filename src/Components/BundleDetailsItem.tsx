@@ -59,10 +59,10 @@ const BundleDetailsItem: React.FC<Props> = (props) => {
         return dateStrArr
     }
 
-    return <Grid container direction='column'>
-        <Typography>{props.item.bundle_name}</Typography>
-        <Typography>{props.item.start_date}</Typography>
-        <Typography>{props.item.bundle_validity_days} days -- {getEndDateStr().toString()}</Typography>
+    return <Grid container direction='column' style={{ padding: 16 }}>
+        <Typography variant='h6'>{props.item.bundle_name}</Typography>
+        <Typography variant='body2'>Starts from: {props.item.start_date}</Typography>
+        <Typography variant='body2'>Validity: {props.item.bundle_validity_days} days ( {getEndDateStr().toString()} )</Typography>
         <Table >
             <TableHead>
                 <TableRow>
